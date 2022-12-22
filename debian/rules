@@ -1,0 +1,120 @@
+#!/usr/bin/make -f
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+export DH_OPTIONS=${EXTRA_DH_OPTIONS}
+
+CFLAGS=
+CPPFLAGS=
+CXXFLAGS=
+LDFLAGS=
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0 -g
+	CXXFLAGS += -O0
+else
+	CFLAGS += $(shell dpkg-buildflags --get CFLAGS)
+	CPPFLAGS += $(shell dpkg-buildflags --get CPPFLAGS)
+	CXXFLAGS += $(shell dpkg-buildflags --get CXXFLAGS)
+	LDFLAGS += $(shell dpkg-buildflags --get LDFLAGS)
+endif
+
+LDFLAGS += -Wl,-O1
+
+SPLIT=10
+
+DEFAULT_PYTHON := $(shell py3versions -vd)
+ALLPYTHONS := $(shell py3versions -vr)
+
+PYQT_MODULES := opengl remoteobjects sql webchannel webkit websockets xmlpatterns svg \
+	multimedia quick serialport sensors texttospeech x11extras positioning bluetooth nfc
+
+PY_PACKAGE_NAMES := pyqt5 $(PYQT_MODULES:%=pyqt5.qt%) dbus.mainloop.pyqt5
+
+export QT_SELECT=qt5
+
+# STRIP is unset to let stripping be handled by dh_strip
+SHARED_CONFIGURE_OPTIONS=--confirm-license --verbose \
+	--target-dir /usr/lib/python3/dist-packages \
+	--concatenate $(SPLIT) \
+	--no-make \
+	--qmake-setting 'QMAKE_CFLAGS += "${CFLAGS} ${CPPFLAGS}"' \
+	--qmake-setting 'QMAKE_CXXFLAGS += "${CXXFLAGS} ${CPPFLAGS}"' \
+	--qmake-setting 'QMAKE_LFLAGS += "${LDFLAGS}"'
+
+
+%:
+	dh $@ --with python3
+
+override_dh_auto_configure-arch: $(ALLPYTHONS:%=build-%/configure-stamp)
+
+override_dh_auto_configure-indep: build-$(DEFAULT_PYTHON)/configure-stamp
+
+build-%/configure-stamp:
+	dh_testdir
+	python$* /usr/bin/sip-build $(SHARED_CONFIGURE_OPTIONS) \
+			--build-dir build-$* \
+			$(if $(filter $(DEFAULT_PYTHON),$*),--pep484-pyi,--no-designer-plugin --no-qml-plugin)
+	sed -i '/strip/d' build-$*/*/Makefile
+	touch $@
+
+override_dh_auto_build-arch: $(ALLPYTHONS:%=build-%/build-stamp)
+
+override_dh_auto_build-indep: build-$(DEFAULT_PYTHON)/build-stamp
+
+build-%/build-stamp: build-%/configure-stamp
+	dh_testdir
+	dh_auto_build -B build-$*
+	touch $@
+
+override_dh_auto_install-indep:
+	$(MAKE) -C build-$(DEFAULT_PYTHON) install INSTALL_ROOT=$(CURDIR)/debian/tmp
+
+override_dh_installexamples-indep:
+	dh_installexamples -Xactiveqt -i
+	# Use python3 shebangs and regenerate resource files
+	export PYTHONPATH=$(CURDIR)/debian/tmp/usr/lib/python3/dist-packages; \
+	cd $(CURDIR)/debian/pyqt5-examples/usr/share/doc/pyqt5-examples/examples/; \
+		cp --preserve=timestamps /usr/share/javascript/jquery/jquery.min.js webkit/fancybrowser/; \
+		find . -name '*.py' -exec sed -i 's/\/env python/\/python3/g' {} +; \
+		find . -name '*.qrc' | sed 's/\.qrc//g' | QT_HASH_SEED=0 xargs -I {} \
+		$(CURDIR)/debian/tmp/usr/bin/pyrcc5 {}.qrc -o {}_rc.py
+	# Symlink duplicate files in examples. Based on Andrew Starr-Bochicchio's
+	# code in ubuntu-packaging-guide.
+	cd $(CURDIR)/debian/pyqt5-examples && \
+	fdupes -r1nq usr/share/doc/pyqt5-examples/examples | while read s; do \
+		set -- $$(echo $$s | tr ' ' '\n' | sort); \
+		f=$$1; shift; for d; do \
+			echo "symlinking identical file $$d to $$f"; \
+			rm $$d; ln -s /$$f $$d; \
+		done; \
+	done
+
+override_dh_auto_install-arch:
+	set -e; for p in $(ALLPYTHONS); do \
+		$(MAKE) -C build-$$p install INSTALL_ROOT=$(CURDIR)/debian/tmp; \
+	done
+
+execute_after_dh_install-arch:
+	sed -i 's,/usr/bin/python3[.0-9]*,/usr/bin/python3,' debian/pyqt5-dev-tools/usr/bin/*
+	rm -rfv debian/python3-pyqt5/usr/lib/python3/dist-packages/PyQt5/uic/port_v2
+
+override_dh_auto_clean:
+	rm -rf $(ALLPYTHONS:%=build-%)
+	find . -type f -name .DS_Store -delete
+	find . -type f -name *.pyc -delete
+	find . -type d -name __pycache__ -delete
+	cd sip; rm -rf Qt opengl_types.sip pyqt-gpl.sip5
+	rm -f examples/quick/tutorials/extending/chapter6-plugins/Charts/qmldir
+
+override_dh_installdocs:
+	dh_installdocs -A NEWS
+
+override_dh_strip-arch:
+	dh_strip -ppyqt5-dev-tools
+	set -e; \
+	for p in $(PY_PACKAGE_NAMES:%=python3-%); do \
+		DH_OPTIONS= dh_strip -p$$p --dbgsym-migration="$$p-dbg (<< 5.15.4+dfsg-4~)"; \
+	done
+
+override_dh_python3:
+	dh_python3 -N pyqt5-examples

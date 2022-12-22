@@ -1,0 +1,885 @@
+pyqt5 (5.15.6+dfsg-1+deepin1) UNRELEASED; urgency=medium
+
+  * update
+
+ -- Debian Python Team <team+python@tracker.debian.org>  Thu, 08 Dec 2022 15:54:40 +0800
+
+pyqt5 (5.15.6+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump sip build-dependencies to 6.4, following pyproject.toml.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 31 Oct 2021 13:22:10 +0300
+
+pyqt5 (5.15.5+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update debian/source/lintian-overrides for Lintian 2.109.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 23 Oct 2021 14:37:17 +0300
+
+pyqt5 (5.15.4+dfsg-4) unstable; urgency=medium
+
+  * Stop building extensions for Python debug interpreter (closes: #994337).
+    - Rely on automatic dbgsym packages for debug symbols.
+  * Override Lintian national-encoding warning for codecs example data.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 29 Sep 2021 13:20:27 +0300
+
+pyqt5 (5.15.4+dfsg-3) unstable; urgency=medium
+
+  * Install PyQt5/sip.pyi in python3-pyqt5 package.
+    - Build-depend on sip 6.x to make sure this file is available.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 07 Sep 2021 12:25:49 +0300
+
+pyqt5 (5.15.4+dfsg-2) unstable; urgency=medium
+
+  * Bump Standards-Version to 4.6.0, no changes needed.
+  * Upload to unstable.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Mon, 06 Sep 2021 21:50:44 +0300
+
+pyqt5 (5.15.4+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Drop remove_pyqt5qt_dependency.diff, applied upstream.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 10 Mar 2021 20:24:09 +0300
+
+pyqt5 (5.15.3+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Remove QtNetworkAuth packages, upstream moved them to a separate source.
+  * Bump years in debian/copyright.
+  * Bump required python3-pyqtbuild version to 1.9, per pyproject.toml.
+  * Add a patch to remove PyQt5-Qt from Requires-Dist metadata field.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 26 Feb 2021 14:23:58 +0300
+
+pyqt5 (5.15.2+dfsg-3) unstable; urgency=medium
+
+  * Build-depend on sip-tools instead of sip5-tools, in preparation for
+    SIP v6.
+  * Limit the qtconnectivity packages to linux-any (closes: #980031).
+    Thanks Samuel Thibault for the patch!
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 13 Jan 2021 21:52:29 +0300
+
+pyqt5 (5.15.2+dfsg-2) unstable; urgency=medium
+
+  * Install the PEP 561 py.typed file (closes: #978586).
+    - Build-depend on python3-sipbuild ≥ 5.5.0+dfsg-2 for this.
+  * Remove some unused build-dependencies. Thanks to Helmut Grohne!
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 05 Jan 2021 20:41:42 +0300
+
+pyqt5 (5.15.2+dfsg-1) unstable; urgency=medium
+
+  * Break calibre < 5.0 (see #970921).
+  * Drop qtspeech_5.14.diff, not needed since we upgraded to Qt 5.15.
+  * New upstream release.
+  * Bump required python3-pyqtbuild version to 1.6.
+  * Drop hashable_signals.diff, included in the new release.
+  * Bump Standards-Version to 4.5.1, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Mon, 30 Nov 2020 19:02:03 +0300
+
+pyqt5 (5.15.1+dfsg-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+  [ Ondřej Nový ]
+  * d/control: Update Maintainer field with new Debian Python Team
+    contact address.
+  * d/control: Update Vcs-* fields with new Debian Python Team Salsa
+    layout.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 24 Sep 2020 16:00:35 +0300
+
+pyqt5 (5.15.1+dfsg-1) experimental; urgency=medium
+
+  [ Debian Janitor ]
+  * Set field Upstream-Name in debian/copyright.
+  * Drop unnecessary dh arguments: --parallel, --parallel
+  * Fix day-of-week for changelog entry 5.0-1.
+
+  [ Dmitry Shachnev ]
+  * New upstream release.
+  * Backport upstream patch to make bound signals hashable.
+  * Add a patch to make QtTextToSpeech module buildable with Qt 5.14.
+
+  [ Alexander Volkov ]
+  * Add python3-pyqt5.qttexttospeech package for QtTextToSpeech module.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 20 Sep 2020 11:23:00 +0300
+
+pyqt5 (5.15.0+dfsg-1+exp3) experimental; urgency=medium
+
+  * Add new binary packages:
+    - python3-pyqt5.qtbluetooth
+    - python3-pyqt5.qtnetworkauth
+    - python3-pyqt5.qtnfc
+    - python3-pyqt5.qtremoteobjects (thanks Alexander Volkov)
+  * Bump years in debian/copyright.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 17 Jul 2020 13:37:15 +0300
+
+pyqt5 (5.15.0+dfsg-1+exp2) experimental; urgency=medium
+
+  * Rebuild against Qt 5.14, to make module-tags in Qt*.toml files updated.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 03 Jul 2020 18:22:46 +0300
+
+pyqt5 (5.15.0+dfsg-1+exp1) experimental; urgency=medium
+
+  * Switch from sip4 to sip5:
+    - Update build-dependencies.
+    - Build with sip-build instead of configure.py.
+    - Drop debian/patches/public_sip.diff, not needed with sip5.
+    - Install .sip files into the new location.
+    - Update runtime dependency of python3-pyqt5{,-dbg} and pyqt5-dev.
+  * Drop -Wl,--as-needed from LDFLAGS, it is default in Bullseye.
+  * Update to debhelper compat level 13.
+  * Use dh sequencer.
+  * Break some reverse dependencies, they need to build with sip5 too
+    (closes: #962846).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 17 Jun 2020 14:12:56 +0300
+
+pyqt5 (5.15.0+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump python3-sip-dev build-dependency to 4.19.23, following upstream.
+  * Refresh debian/patches/public_sip.diff.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 09 Jun 2020 15:21:04 +0300
+
+pyqt5 (5.14.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop the creation of .noinit file. It was needed for python-support
+    long time ago, and never used in this package.
+  * Rebuild the designer and QML plugins with Python 3.8 (closes: #955621).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 07 Apr 2020 20:20:29 +0300
+
+pyqt5 (5.14.1+dfsg-3) unstable; urgency=medium
+
+  * Drop Python 2 support (closes: #937513).
+  * Bump Standards-Version to 4.5.0, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 20 Feb 2020 15:30:37 +0300
+
+pyqt5 (5.14.1+dfsg-2) unstable; urgency=medium
+
+  [ Emmanuel Arias ]
+  * python-*-dbg depends on python2-dbg instead of python-dbg. (Closes: #948495)
+    - Patch by Matthias Klose
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 09 Jan 2020 20:19:41 +0300
+
+pyqt5 (5.14.1+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update debian/watch again, upstream tarballs are now on PyPI.
+  * Bump sip build-dependencies to 4.19.20, following configure.py.
+  * Drop Python 2 dbus.mainloop.pyqt5 packages.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 07 Jan 2020 18:02:01 +0300
+
+pyqt5 (5.13.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update debian/watch for removal of _gpl from tarball names.
+  * Drop patches, applied in the new release:
+    - python2_qstring.diff
+    - remove_deprecated_sip_option.diff
+  * Also drop qt_5_12_5.diff, no longer needed.
+  * Refresh public_sip.diff.
+  * Bump sip build-dependencies to 4.19.19, following configure.py.
+  * Stop passing wrong -m option to configure.py.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 12 Dec 2019 10:47:38 +0300
+
+pyqt5 (5.12.3+dfsg-3) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Bump Standards-Version to 4.4.1.
+
+  [ Dmitry Shachnev ]
+  * Backport upstream change to stop using deprecated -B option of sip.
+    This option caused build failure when used together with -f.
+  * Use distutils to get Python include directory. Fixes build failure
+    with Python 3.8.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 23 Oct 2019 09:46:48 +0300
+
+pyqt5 (5.12.3+dfsg-2) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Use debhelper-compat instead of debian/compat.
+  * Bump Standards-Version to 4.4.0.
+
+  [ Dmitry Shachnev ]
+  * Update python2_qstring.diff with the latest changes from upstream.
+  * Update Policy URL in the description of public_sip.diff.
+  * Add Qt 5.12.5 to the timeline (qt_5_12_5.diff).
+  * Upload to unstable.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 06 Sep 2019 14:40:10 +0300
+
+pyqt5 (5.12.3+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Refresh debian/patches/public_sip.diff.
+  * Backport upstream patch to fix building with Python 2.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 03 Jul 2019 21:22:54 +0300
+
+pyqt5 (5.12.2+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Refresh debian/patches/public_sip.diff.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 24 May 2019 17:40:13 +0300
+
+pyqt5 (5.12.1+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Update debian/watch for another upstream change.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 27 Mar 2019 22:02:10 +0300
+
+pyqt5 (5.12+dfsg-1) experimental; urgency=medium
+
+  [ Bastian Germann ]
+  * Provide dist-info metadata (closes: #890200; LP: #1814019).
+
+  [ Scott Kitterman ]
+  * Remove myself from uploaders
+
+  [ Dmitry Shachnev ]
+  * Build the tools for all supported Python 3 versions.
+  * Bump Standards-Version to 4.3.0, no changes needed.
+  * Update debian/watch to use the new tarballs location.
+  * New upstream release.
+  * Refresh debian/patches/public_sip.diff.
+  * Drop Qt WebEngine packages, they are now in a separate source.
+  * Update debian/copyright.
+  * Bump sip build-dependencies to 4.19.14, following configure.py.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 06 Mar 2019 14:34:54 +0300
+
+pyqt5 (5.11.3+dfsg-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/watch: Use https protocol
+
+  [ Dmitry Shachnev ]
+  * New upstream release.
+  * Update public_sip.diff, revert some more upstream changes.
+  * Do not override default dh_builddeb parameters.
+  * Install both upstream changelog and NEWS, per Policy 12.7.
+  * Bump Standards-Version to 4.2.1, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 12 Oct 2018 12:35:34 +0300
+
+pyqt5 (5.11.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump sip build-dependencies to 4.19.11, following configure.py.
+  * Drop cura_crash.diff, applied in the new release.
+  * Use the public version of sip module, per Policy § 4.13.
+  * Configure with --no-dist-info for now, mk_distinfo.py does not work
+    well with DESTDIR yet.
+  * Update debhelper compat level to 11.
+  * Bump Standards-Version to 4.1.5, no changes needed.
+  * Update Homepage field in debian/control.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 06 Jul 2018 13:09:02 +0300
+
+pyqt5 (5.10.1+dfsg-2) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/tests: Use AUTOPKGTEST_TMP instead of ADTTMP
+
+  [ Dmitry Shachnev ]
+  * Backport three upstream commits to fix crashes when running Cura
+    (closes: #898211).
+  * Drop ancient X-Python{,3}-Version fields.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 10 May 2018 17:09:00 +0300
+
+pyqt5 (5.10.1+dfsg-1) unstable; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * New upstream release.
+  * Preserve timestamps when copying jquery.min.js, to make pyrcc generate
+    the resource file reproducibly.
+  * Install sip files directly in the .install file, to fix race condition
+    when doing arch+indep build.
+  * Update debhelper compatibility level to 10.
+  * Use dh_missing instead of deprecated dh_install --fail-missing.
+  * Bump Standards-Version to 4.1.4, no changes needed.
+  * Bump copyright years in debian/copyright.
+
+  [ Scott Kitterman ]
+  * Fix mismatch python:Version substitution variable for
+    python-pyqt5.qtsensors and python-pyqt5.qtx11extras
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org
+  * d/copyright: Use https protocol in Format field
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 14 Apr 2018 22:32:24 +0300
+
+pyqt5 (5.9.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump sip build-dependencies to 4.19.4, following configure.py.
+  * Update pyrcc5 manpage for -name option removal.
+  * Drop disabled_features.diff, applied upstream.
+  * Regenerate the resources with QT_HASH_SEED=0, for reproducibility.
+  * Bump Standards-Version to 4.1.2, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 05 Dec 2017 15:51:35 +0300
+
+pyqt5 (5.9+dfsg-2) unstable; urgency=medium
+
+  * Backport upstream patch to fix handling of disabled features (fixes
+    build on architectures with OpenGL ES).
+  * Enable Qt WebEngine support on mipsel.
+  * Drop Breaks/Replaces on versions that are not even in oldstable.
+  * Bump Standards-Version to 4.1.0, stop using deprecated Priority: extra.
+  * Upload to unstable.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 23 Sep 2017 22:18:04 +0300
+
+pyqt5 (5.9+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Upstream no longer ships Sphinx documentation in this source.
+    - Stop building pyqt5-doc package.
+    - Update debian/copyright to not exclude doc/html from the tarball.
+    - Drop python3-sphinx build-dependency.
+  * Bump sip build-dependencies to 4.19.3, following configure.py.
+  * Remove unused variables from debian/rules.
+  * Build against Qt 5.9.1 in experimental.
+  * Copy config-tests directory to build directories before configure.
+  * Add explicit build-dependency on libjs-jquery.
+  * Enable Qt WebEngine support on arm64 and armhf (closes: #867733).
+  * Bump Standards-Version to 4.0.0, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 18 Jul 2017 11:30:02 +0300
+
+pyqt5 (5.8.2+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Update debian/copyright.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 09 May 2017 10:25:24 +0300
+
+pyqt5 (5.8.1+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Drop bytes_conversion.diff, applied in the new release.
+  * Drop no_qml_debug.diff, applied in the new release.
+  * Bump sip build-dependencies to 4.19.1, following configure.py.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Mon, 13 Mar 2017 17:51:47 +0300
+
+pyqt5 (5.7+dfsg-6) unstable; urgency=medium
+
+  * Add patches from upstream to support Qt 5.9 (closes: #872892):
+    - no_license_check.diff
+    - qt59_support.diff
+    - opengl_detection.diff
+  * Build against Qt 5.9.1.
+  * Enable Qt WebEngine support on arm64, armhf and mipsel (closes: #867733).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 22 Aug 2017 14:41:04 +0300
+
+pyqt5 (5.7+dfsg-5) unstable; urgency=medium
+
+  * Make WebEngine packages depend on WebChannel, to avoid import errors.
+  * Disable implicit qml_debug option for debug builds (no_qml_debug.diff).
+    Patch taken from openSUSE, thanks Hans-Peter Jansen!
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 21 Jan 2017 11:26:05 +0300
+
+pyqt5 (5.7+dfsg-4) unstable; urgency=medium
+
+  * Add Qt WebEngine support for amd64 and i386 (closes: #841830).
+  * Add Qt WebChannel support.
+  * Upload to unstable.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Mon, 09 Jan 2017 12:47:01 +0300
+
+pyqt5 (5.7+dfsg-3) experimental; urgency=medium
+
+  * Build against Qt 5.7 for experimental.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 13 Sep 2016 12:01:27 +0300
+
+pyqt5 (5.7+dfsg-2) unstable; urgency=medium
+
+  * Backport an upstream change to fix conversion of bytes values
+    (bytes_conversion.diff; closes: #834875).
+  * Update the pyuic5 and pyrcc5 manpages.
+  * Drop obsolete debian/README.source.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 27 Aug 2016 21:06:10 +0300
+
+pyqt5 (5.7+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop 0001-Use-all-D-Bus-include-directories-returned-by-pkg-co.patch,
+    applied upstream.
+  * Drop rule to remove pycache from orig tarball, it is no longer there.
+  * Update debian/copyright.
+  * Stop installing Qt.pyi, it is no longer generated.
+  * Update for upstream changes to pyrcc5 and pylupdate5:
+    - Add new files to debian/pyqt5-dev-tools.install.
+    - Fix shebangs in /usr/bin/pylupdate5 and /usr/bin/pyrcc5 files.
+    - Call make install to temporary location to be able to run pyrcc5.
+    - Call dh_python3 against pyqt5-dev-tools.
+  * Use --no-sip-files configure option instead of removing the .sip files
+    after they are installed.
+  * Only ship files installed by upstream build system in pyqt5-dev.
+  * Upload to unstable.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 12 Aug 2016 10:25:00 +0300
+
+pyqt5 (5.6+dfsg-2) experimental; urgency=medium
+
+  * Build against Qt 5.6 for experimental.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 30 Apr 2016 15:49:27 +0300
+
+pyqt5 (5.6+dfsg-1) unstable; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * New upstream release.
+  * Add missing newline before clean target in debian/rules.
+  * Updated debian/watch for the new tarballs naming scheme.
+  * Bump sip build-dependencies to 4.18, following configure.py.
+  * Drop custom get-orig-source target, it makes no sense.
+  * Bump Standards-Version to 3.9.8, no changes needed.
+  * Override Lintian false positive error about tiger.js file.
+  * Fix detection of D-Bus include directories.
+  * Install Python type hint (*.pyi) files.
+
+  [ Ondřej Nový ]
+  * Fixed VCS URL (https)
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 26 Apr 2016 16:02:09 +0300
+
+pyqt5 (5.5.1+dfsg-3) unstable; urgency=medium
+
+  * Move pyuic5-related sed call to install-arch target, it should not
+    be run during indep builds.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 25 Oct 2015 23:46:29 +0300
+
+pyqt5 (5.5.1+dfsg-2) unstable; urgency=medium
+
+  * Make pyuic5 shebang fixup really work.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 25 Oct 2015 20:04:40 +0300
+
+pyqt5 (5.5.1+dfsg-1) unstable; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * New upstream release.
+  * Move fdupes from Build-Depends to Build-Depends-Indep, it is only
+    used to build pyqt5-examples package.
+  * Sort debian/pyqt5-dev-tools.manpages file.
+  * Remove examples/webkit/fancybrowser/__pycache__ from orig tarball,
+    it contains a compiled file without source.
+  * Remove uupdate call from debian/rules, not needed with git-dpm.
+
+  [ Matthias Klose ]
+  * pyuic5: Call the unversioned python3 interpreter.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 25 Oct 2015 19:17:22 +0300
+
+pyqt5 (5.5+dfsg-2) unstable; urgency=medium
+
+  * Remove gstreamer 0.10 packages from build-depends, no longer needed.
+  * Update Vcs fields for Git migration.
+  * Add support for Qt 5.5.1 (0001-Add-support-for-Qt-5.5.1.patch).
+  * Move python3-sphinx from Build-Depends to Build-Depends-Indep.
+  * Upload to unstable.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 22 Oct 2015 13:11:35 +0300
+
+pyqt5 (5.5+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Build against Qt 5.5.0.
+  * Add explicit build-dependency on dh-python.
+  * Drop Enginio packages. QtEnginio is no longer developed and
+    pending deprecation.
+  * Build with Sphinx 1.3.
+  * Specify repacksuffix in debian/watch.
+  * Drop XS-Testsuite header, no longer needed with new dpkg versions.
+  * Bump year in debian/copyright.
+  * Add QtLocation library to QtPositioning packages.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 20 Aug 2015 12:59:06 +0300
+
+pyqt5 (5.4.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop all patches, applied upstream.
+  * Add a temporary hack to use upstream stylesheet when building the
+    documentation with Sphinx 1.2.
+  * Build-depend on sip 4.16.8+dfsg-2, as the previous upload would
+    generate wrong dependencies for Python 3 packages.
+  * Upload to unstable.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 25 Jun 2015 14:30:12 +0300
+
+pyqt5 (5.4.1+dfsg-3) experimental; urgency=medium
+
+  * Update and unify descriptions of binary packages.
+  * Backport upstream change to add support for Qt 5.4.2.
+  * Let pyuic sort the import order (closes: #787251, thanks to Reiner
+    Herrmann for the patch).
+  * Build against Qt 5.4.2 to make sure we are ready for the transition.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 06 Jun 2015 12:10:46 +0300
+
+pyqt5 (5.4.1+dfsg-2) experimental; urgency=medium
+
+  * Backport some fixes to setZOrder() function from upstream
+    (uiparser_setzorder_fix.diff).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 12 Mar 2015 10:49:35 +0300
+
+pyqt5 (5.4.1+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+    - No longer inserts timestamps into generated files (closes: #774510).
+    - Require sip 4.16.6 for building.
+  * Build against Qt 5.4.1.
+  * Update list of possible options in pylupdate5 manpage.
+  * Add some Suggests to pyqt5-examples package (closes: #779369).
+  * No-op wrap and sort.
+  * Bump years in debian/copyright.
+  * Remove .pyc and .DS_Store files when cleaning.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 05 Mar 2015 22:14:15 +0300
+
+pyqt5 (5.4+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Drop add_dependency.diff, applied upstream.
+  * Bump required sip dependency to 4.16.4.
+  * Install QtXml module.
+  * Build against Qt 5.4.
+  * Fix descriptions of some binary packages (closes: #769468, #771713).
+  * Add missing licensing information to debian/copyright.
+  * Bump Standards-Version to 3.9.6, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 28 Dec 2014 19:49:12 +0300
+
+pyqt5 (5.3.2+dfsg-3) unstable; urgency=medium
+
+  * Fix a typo in debian/tests/control.
+  * Test Enginio and QtWebSockets modules in autopkgtest.
+  * Add a patch from OpenSUSE to make pyqt5 build against Qt 5.3.2.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 24 Sep 2014 13:21:26 +0400
+
+pyqt5 (5.3.2+dfsg-2) unstable; urgency=medium
+
+  * Add new package for Enginio module.
+  * Add new package for QtWebSockets module.
+  * Fix Lintian warnings about too short and duplicate long descriptions.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 14 Sep 2014 14:40:11 +0400
+
+pyqt5 (5.3.2+dfsg-1) unstable; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * New upstream release.
+  * Test Python 2 versions in autopkgtest.
+  * Set X-Python-Version to >= 2.7 as the current code in debian/rules
+    builds only for that version.
+  * Remove all strip calls from generated Makefiles.
+  * Update my e-mail address.
+  * Update debian/copyright.
+
+  [ Scott Kitterman ]
+  * Set minimum python3-all-dev version to 3.3.2-5~ due to use of configdir in
+    debian/rules (LP: #1365814)
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 13 Sep 2014 14:13:57 +0400
+
+pyqt5 (5.3.1+dfsg-4) unstable; urgency=medium
+
+  * Add support for python in addition to python3 because the upcoming calibre
+    2.X series of releases will use PyQt5 with Python and not Python 3
+    - Add python build-depends to debian/control
+    - Add python-* equivalents of existing python3-* packages to debian/
+      control
+    - Update debian/rules to account for python as well as python3
+    - Set minimum python3 version to 3.3 since the revised debug configure
+      rule will not work for 3.2
+    - Replicate and update all python3-* .install files as python-*
+
+ -- Scott Kitterman <scott@kitterman.com>  Sun, 03 Aug 2014 18:48:21 -0400
+
+pyqt5 (5.3.1+dfsg-3) unstable; urgency=medium
+
+  * debian/tests/import: Redirect stderr to stdout for debug interpreter.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sat, 26 Jul 2014 21:57:58 +0400
+
+pyqt5 (5.3.1+dfsg-2) unstable; urgency=medium
+
+  * Workaround GCC bug #61918 by replacing -isystem with -I in Makefiles
+    (closes: #755767).
+  * Test importing from debug interpreters in autopkgtest.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sat, 26 Jul 2014 09:59:30 +0400
+
+pyqt5 (5.3.1+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+    - Drop debian/patches/fix_implicit_qtablewidget.patch, which had been
+      cherry picked from upstream
+
+ -- Scott Kitterman <scott@kitterman.com>  Sat, 05 Jul 2014 00:05:42 -0400
+
+pyqt5 (5.3+dfsg-3) unstable; urgency=medium
+
+  * Added debian/patches/fix_implicit_qtablewidget.patch to fix a pyuic
+    regression in the handling of implicit QTableWidget dimensions
+
+ -- Scott Kitterman <scott@kitterman.com>  Thu, 19 Jun 2014 00:20:35 -0400
+
+pyqt5 (5.3+dfsg-2) unstable; urgency=medium
+
+  * Bump Qt build-dependencies to 5.3, to make sure headers are in
+    correct (multi-arch) locations.
+  * Upload to unstable.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sun, 08 Jun 2014 17:01:30 +0400
+
+pyqt5 (5.3+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fix uscan warning about trailing / in Files-Excluded.
+  * Use new --no-tools configure flag on non-default Python versions.
+  * Bump required sip4 version to 4.16.
+  * Install QtQuickWidgets.so if it is available.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Mon, 02 Jun 2014 15:16:52 +0400
+
+pyqt5 (5.2.1+dfsg-3) unstable; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * Drop get-orig-source.sh in favour of Files-Excluded field in
+    debian/copyright.
+
+  [ Scott Kitterman ]
+  * Upload to unstable
+
+ -- Scott Kitterman <scott@kitterman.com>  Fri, 09 May 2014 09:38:52 -0400
+
+pyqt5 (5.2.1+dfsg-2) experimental; urgency=medium
+
+  * Add new package for QtPositioning module.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sat, 19 Apr 2014 23:25:04 +0400
+
+pyqt5 (5.2.1+dfsg-1) experimental; urgency=medium
+
+  * New upstream bugfix release.
+  * Drop all patches, applied upstream.
+  * Bump python3-sip-dev build-dependency to 4.15.5.
+  * Update licensing information for pylupdate and pyrcc modules.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Tue, 11 Mar 2014 12:45:18 +0400
+
+pyqt5 (5.2+dfsg-4) unstable; urgency=medium
+
+  * Build-depend on libqt5x11extras5-dev instead of libqt5x11extras-dev,
+    which is now a transitional package.
+  * Drop QMAKESPEC export, seems to be not needed anymore.
+  * Drop hack for alpha, it is no longer supported and qtwebkit is
+    not built there anyway.
+  * Backport upstream patch to fix licensing for dbus module.
+  * Update debian/copyright to use the machine-readable DEP-5 format.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Mon, 10 Feb 2014 09:24:20 +0400
+
+pyqt5 (5.2+dfsg-3) unstable; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * Medium urgency for auto-qtbase-opensource-src transition
+  * No longer create sip symlinks in build directories, that does not
+    have any effect.
+  * debian/patches/fix_qreal_check.diff: Fix qreal check for Qt 5.2.
+  * Adjust dh_compress call to make exclude list not match the whole
+    pyqt5-examples package.
+
+  [ Scott Kitterman ]
+  * Update QMAKESPEC definition in debian/rules for new location (Thanks to
+    Lisandro Damián Nicanor Pérez Meyer for the fix)
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Fri, 31 Jan 2014 20:03:53 +0400
+
+pyqt5 (5.2+dfsg-2) unstable; urgency=low
+
+  [ Dmitry Shachnev ]
+  * Add new package for QtX11Extras module.
+  * Autopkgtest improvements:
+    - Make import autopkgtest depend on python3-all.
+    - Don’t set -x in import autopkgtest.
+    - Test QtDBus and QtX11Extras modules as well.
+  * Split examples into their own package, pyqt5-examples.
+  * Rename qpair_old_qt.diff to old_qt.diff, and include a fix for
+    QtX11Extras module.
+
+  [ Scott Kitterman ]
+  * Update debian/copyright for 2014 references
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sun, 19 Jan 2014 12:05:05 +0400
+
+pyqt5 (5.2+dfsg-1) unstable; urgency=low
+
+  * Upload to unstable.
+  * New upstream release.
+  * Drop all patches, applied upstream.
+  * Backport a patch (qpair_old_qt.diff) to fix building against
+    Qt 5.1.
+  * Bump required sip version to 4.15.4.
+  * Bump Standards-Version to 3.9.5, no changes needed.
+  * Add XS-Testsuite header for autopkgtest.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Thu, 09 Jan 2014 11:48:59 +0400
+
+pyqt5 (5.1.1+dfsg-3) experimental; urgency=low
+
+  * Upload to experimental to build against Qt 5.2.
+  * Backport upstream patch (gluint64.sip) to disable GLuint64 on GL ES.
+  * Symlink duplicate files in examples using fdupes.
+  * Add an autopkgtest to make sure all packages are co-installable
+    and all modules are importable.
+  * Temporary build-depend on libudev-dev on Linux to workaround qmake
+    bug that adds -ludev when building QtSerialPort test code.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sun, 22 Dec 2013 11:13:52 +0400
+
+pyqt5 (5.1.1+dfsg-2) unstable; urgency=low
+
+  * Add pyqt5.qtopengl-dbg Breaks/Conflicts to fix file overwrite error
+    (Closes: #729737)
+
+ -- Scott Kitterman <scott@kitterman.com>  Sat, 16 Nov 2013 16:42:07 -0500
+
+pyqt5 (5.1.1+dfsg-1) unstable; urgency=low
+
+  * New upstream bugfix release.
+  * Add debian/get-orig-source.sh and explain how to use it in
+    README.source; add jquery_rc.py to list of non-free files.
+  * Use dh_link for linking jquery.js in examples.
+  * Install QOpenGLFunctions libraries in python3-pyqt5.qtopengl package.
+  * Call dh_install with --fail-missing option.
+  * Do not install Windows-specific activeqt examples.
+  * Add new packages for QtSerialPort and QtSensors modules.
+  * Make sure dpkg build flags are actually applied.
+  * Backport upstream patch to always apply passed qmake variables.
+  * Pass --debug option to configure.py when doing debug builds.
+  * Link with --as-needed.
+  * Simplify install code in debian/rules.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sat, 09 Nov 2013 14:26:40 +0400
+
+pyqt5 (5.1+dfsg-1) unstable; urgency=low
+
+  [ Scott Kitterman ]
+  * New upstream release
+  * Install designer plugin in python3-pyqt5
+  * Move debug version of libpyqt5qmlplugin.so from python3-pyqt5-dbg to
+    python3-pyqt5.qtquick-dbg to match the regular file and avoid duplication
+    (Closes: #720679)
+  * Remove debian/patches/libpython_multiarch.diff, equivalent change
+    incorporated upstream (and debian/patches directory since there are no
+    other patches)
+  * Add README.source to document how to make DFSG tarball
+
+  [ Dmitry Shachnev ]
+  * Delete pycache directories in clean target.
+  * Regenerate resource files during build.
+  * Repack tarball to remove minified javascript from docs and fancybrowser
+    example (Closes: #722990).
+  * Update debian/watch to use dversionmangle.
+  * Build QML plugin only for the default Python version.
+
+ -- Scott Kitterman <scott@kitterman.com>  Sun, 13 Oct 2013 07:53:00 -0400
+
+pyqt5 (5.0.1-1) experimental; urgency=low
+
+  * New upstream release.
+  * Bump python3-sip-dev build-dependency to 4.15.
+  * Drop all previous patches, applied upstream.
+  * Add new package, python3-pyqt5.qtquick, containing QtQuick and QtQml
+    extensions.
+  * Install QtMultimediaWidgets extension.
+  * Make pyqt5-doc recommend python3-pyqt5, because of the examples.
+  * Add a patch to support multiarch locations of libpython.
+  * Workaround useless warnings from dh_install --list-missing.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Thu, 22 Aug 2013 11:00:35 +0400
+
+pyqt5 (5.0-3) unstable; urgency=low
+
+  * Upload to unstable
+  * Set X-Python3-Version back to >= 3.2 as the work-around is not longer
+    neeeded (python3.2 is no longer supported in unstable)
+
+ -- Scott Kitterman <scott@kitterman.com>  Mon, 12 Aug 2013 19:49:25 -0400
+
+pyqt5 (5.0-2) experimental; urgency=low
+
+  [ Dmitry Shachnev ]
+  * Update debian/copyright, thanks Paul Tagliamonte for comments.
+  * Use xz compression for binary packages.
+  * Install files to python3-dbus.mainloop.pyqt5{,-dbg} directly instead of
+    generating .install files. This fixes a problem of the -dbg package being
+    not installable because of unwanted debug-id files (closes: #718551).
+
+  [ Scott Kitterman ]
+  * Add debian/patches/arm_compile.patch, cherry picked from upstream to
+    enable builds on arm (replaces qreal_float_support.diff that was used in
+    python-qt4)
+  * Remove pycache directories left over in pyqt5-doc
+
+ -- Scott Kitterman <scott@kitterman.com>  Fri, 09 Aug 2013 17:44:19 -0400
+
+pyqt5 (5.0-1) experimental; urgency=low
+
+  [ Dmitry Shachnev ]
+  * Initial release, based on python-qt4 packaging (closes: #712630).
+  * debian/patches/mainloop_rename.diff: upstream patch to rename
+    dbus.mainloop.qt module to dbus.mainloop.pyqt5, to prevent conflicts
+    with PyQt4.
+
+  [ Scott Kitterman ]
+  * Add call to dh_installdocs in debian/rules
+  * Added doc-base registration, debian/pyqt5-doc.doc-base
+  * Remove empty pyqt5-doc/examples/webkit/googlechat directory
+  * Add debian/pyqt5-doc.links to replace embedded copy of jquery.min.js in
+    the fancybrowser example with a symlink to the existing copy in the html
+    documentation
+  * Add debian/patches/fix-example-shebang to remove a buggy and unneeded
+    shebang in examples/sql/connection.py
+  * Set X-Python3-Version: >= 3.3 in debian/control as a temporary workaround
+    to a dh_python3 issue with extension renaming
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sun, 28 Jul 2013 13:15:13 +0400
