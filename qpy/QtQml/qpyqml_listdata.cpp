@@ -1,6 +1,6 @@
 // This is the implementation of the ListData class.
 //
-// Copyright (c) 2021 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2023 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -17,6 +17,8 @@
 // This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+
+#include <sip.h>
 
 #include "qpyqml_listdata.h"
 
@@ -42,6 +44,8 @@ ListData::ListData(PyObject *py_type_, PyObject *py_obj_, PyObject *py_list_,
 // Destroy the data.
 ListData::~ListData()
 {
+    SIP_BLOCK_THREADS
+
     Py_XDECREF(py_type);
     Py_XDECREF(py_obj);
     Py_XDECREF(py_list);
@@ -49,4 +53,6 @@ ListData::~ListData()
     Py_XDECREF(py_count);
     Py_XDECREF(py_at);
     Py_XDECREF(py_clear);
+
+    SIP_UNBLOCK_THREADS
 }

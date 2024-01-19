@@ -25,11 +25,6 @@ SPLIT=10
 DEFAULT_PYTHON := $(shell py3versions -vd)
 ALLPYTHONS := $(shell py3versions -vr)
 
-PYQT_MODULES := opengl remoteobjects sql webchannel webkit websockets xmlpatterns svg \
-	multimedia quick serialport sensors texttospeech x11extras positioning bluetooth nfc
-
-PY_PACKAGE_NAMES := pyqt5 $(PYQT_MODULES:%=pyqt5.qt%) dbus.mainloop.pyqt5
-
 export QT_SELECT=qt5
 
 # STRIP is unset to let stripping be handled by dh_strip
@@ -108,13 +103,6 @@ override_dh_auto_clean:
 
 override_dh_installdocs:
 	dh_installdocs -A NEWS
-
-override_dh_strip-arch:
-	dh_strip -ppyqt5-dev-tools
-	set -e; \
-	for p in $(PY_PACKAGE_NAMES:%=python3-%); do \
-		DH_OPTIONS= dh_strip -p$$p --dbgsym-migration="$$p-dbg (<< 5.15.4+dfsg-4~)"; \
-	done
 
 override_dh_python3:
 	dh_python3 -N pyqt5-examples

@@ -1,6 +1,6 @@
 // This contains the meta-type used by PyQt.
 //
-// Copyright (c) 2021 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2023 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -186,7 +186,7 @@ static qpycore_metaobject *create_dynamic_metaobject(sipWrapperType *wt)
     // Add the properties to the meta-object.
     QMapIterator<uint, PropertyData> it(pprops);
 
-    for (int p = 0; it.hasNext(); ++p)
+    while (it.hasNext())
     {
         it.next();
 
@@ -384,10 +384,12 @@ static int trawl_type(PyTypeObject *pytype, qpycore_metaobject *qo,
         QMetaObjectBuilder &builder, QList<const qpycore_pyqtSignal *> &psigs,
         QMap<uint, PropertyData> &pprops)
 {
+    int rc = 0;
     Py_ssize_t pos = 0;
     PyObject *key, *value, *dict;
 
-    dict = sipPyTypeDict(pytype);
+    if ((dict = sipPyTypeDictRef(pytype)) == NULL)
+        return -1;
 
     while (PyDict_Next(dict, &pos, &key, &value))
     {
@@ -445,7 +447,10 @@ static int trawl_type(PyTypeObject *pytype, qpycore_metaobject *qo,
                 // It is a property.
 
                 if (!ascii_key)
-                    return -1;
+                {
+                    rc = -1;
+                    break;
+                }
 
                 Py_INCREF(value);
 
@@ -466,7 +471,10 @@ static int trawl_type(PyTypeObject *pytype, qpycore_metaobject *qo,
                 // It is a signal.
 
                 if (!ascii_key)
-                    return -1;
+                {
+                    rc = -1;
+                    break;
+                }
 
                 qpycore_pyqtSignal *ps = (qpycore_pyqtSignal *)value;
 
@@ -490,7 +498,9 @@ static int trawl_type(PyTypeObject *pytype, qpycore_metaobject *qo,
         }
     }
 
-    return 0;
+    Py_DECREF(dict);
+
+    return rc;
 }
 
 

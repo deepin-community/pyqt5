@@ -1,6 +1,6 @@
 // This implements the helpers for QObject.
 //
-// Copyright (c) 2021 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2023 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -222,11 +222,11 @@ bool qpycore_qobject_qt_metacast(sipSimpleWrapper *pySelf,
     *sipCpp = 0;
 
     if (!_clname)
-        return true;
+        return false;
 
     // Check if the Python object has gone.
     if (!pySelf)
-        return true;
+        return false;
 
     bool is_py_class = false;
 
