@@ -1,3 +1,279 @@
+2023-10-10  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, qpy/QtCore/qpycore_types.cpp:
+	Removed a compiler warning message.
+	[a92a518d62a1] [5.15.10] <5.15-maint>
+
+2023-10-08  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, lib/project.py, qpy/QtCore/qpycore_types.cpp:
+	Properly fix the use of PyType_GetDict(). ABI v12.13 is now needed.
+	[4a48fab832b8] <5.15-maint>
+
+2023-10-07  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, qpy/QtCore/qpycore_types.cpp:
+	Fixed the memory leak related to sipPyTypeDict() and Python v3.12.
+	[3744224dd080] <5.15-maint>
+
+2023-09-22  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp:
+	Disabled the automatic generation of the type hint for pyqtSlot.
+	[aec75fafb7c3] <5.15-maint>
+
+2023-08-27  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, qpy/QtCore/qpycore_qt_conf.cpp:
+	Use Latin-1 rather than the local encoding to write the embedded
+	qt.conf file.
+	[26eb32db0a3c] <5.15-maint>
+
+2023-08-26  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, test/tests/misc/test_pickle.py:
+	Fixed some legacy unittest calls removed in Python v3.12.
+	[ffdbdfee5b60] <5.15-maint>
+
+2023-07-27  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp:
+	Really fix the QString/None regression.
+	[219301a7e51e] <5.15-maint>
+
+2023-07-21  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt5.msp:
+	Fixed a regression in using None as a QString.
+	[01d95f9ff234] <5.15-maint>
+
+2023-07-16  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt5.msp:
+	Fixes from an apparently rogue metasip scan.
+	[ddceca16b27e] <5.15-maint>
+
+	* NEWS, PyQt5.msp:
+	Fixed the type hints for all ellipsis arguments.
+	[60eaade98d69] <5.15-maint>
+
+2023-07-14  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp:
+	Fixed the type hints for QString.
+	[70febd346bbd] <5.15-maint>
+
+2023-07-12  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp:
+	Fixed the type hints for QObject.findChild() and
+	QObject.findChildren().
+	[87f470a9e300] <5.15-maint>
+
+2023-07-09  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, qpy/pyrcc/rcc.cpp:
+	Fixed pyrcc for reproducable builds.
+	[950ea5e7f6a2] <5.15-maint>
+
+2023-07-05  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp:
+	Fixed the type hints for PYQT_SLOT and pyqtSlot().
+	[d038fb017ee2] <5.15-maint>
+
+2023-06-08  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp, lib/project.py:
+	Added the missing QEvent.Type.EnterEditFocus and
+	QEvent.Type.LeaveEditFocus enum members.
+	[40fc079cfca7] <5.15-maint>
+
+	* NEWS, PyQt5.msp:
+	Added the missing QEvent.Type.NativeGesture member (Qt v5.2 and
+	later).
+	[dc33dcf9e485] <5.15-maint>
+
+2023-05-21  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp:
+	Fixed the QDeadlineTimer ctors.
+	[684e8e23899f] <5.15-maint>
+
+2023-02-02  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 5.15.9 for changeset c8aba8cdb7c0
+	[af0bcef92906] <5.15-maint>
+
+2023-01-31  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, lib/project.py:
+	Fix the order in which modules are built so that the composite Qt
+	module is built after everything it depends on.
+	[c8aba8cdb7c0] [5.15.9] <5.15-maint>
+
+2023-01-22  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 5.15.8 for changeset f3d5a635ec21
+	[255d4467683f] <5.15-maint>
+
+	* lib/pyproject.toml, rb-product.toml:
+	Ensure the PyQt-Qt5 dependency is correct.
+	[f3d5a635ec21] [5.15.8] <5.15-maint>
+
+	* NEWS, PyQt5.msp:
+	Updated for new elements added in Qt v5.15 patch versions.
+	[95299cb2df3b] <5.15-maint>
+
+2022-12-13  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp:
+	Added the missing QBluetoothDeviceDiscoveryAgent.DiscoveryMethod
+	members.
+	[fdce9f658ad8] <5.15-maint>
+
+2022-10-30  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, lib/pyproject.toml:
+	SIP v6.6.2 is now a minimum requirement for the array support.
+	[bd2a905b5345] <5.15-maint>
+
+2022-10-28  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, pyuic/uic/__init__.py:
+	Fixed uic.compileUiDir() when the default system encoding is not
+	UTF8.
+	[50050fc4cd93] <5.15-maint>
+
+2022-10-10  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp:
+	Fixed QBoxLayout.insertItem() ownership bug.
+	[dd1a6abd2427] <5.15-maint>
+
+2022-09-17  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, qpy/QtCore/qpycore_qobject_helpers.cpp:
+	Fixed calling QObject::inherits() from C++ on instances that were
+	created by Python (and so was an instance of a generated derived
+	class), had it's ownership transfered to C++ and the Python object
+	garbage collected. This broke all sub-class converter code.
+	[2e3c3b71f118] <5.15-maint>
+
+2022-06-18  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 5.15.7 for changeset b6de090403e0
+	[910c4de63a6b] <5.15-maint>
+
+2022-06-06  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp:
+	Reordered QPainter methods so that QPolygon[F] are not handled as
+	sequences.
+	[b6de090403e0] [5.15.7] <5.15-maint>
+
+2022-05-21  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp:
+	Refactored the QPainter draw methods to exploit sip.array objects.
+	[c848cf6bafc3] <5.15-maint>
+
+2022-05-17  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, lib/project.py:
+	PyQt5-sip v12.11 is now required to enable support for sip.array.
+	[fe8d991d5445] <5.15-maint>
+
+2022-05-04  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp:
+	Import the enum module in QtCore.pyi.
+	[549feba9d56e] <5.15-maint>
+
+2022-02-28  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/project.py:
+	Documented why there is a need to be explicit about the name of the
+	sip module.
+	[03ca1502b93d] <5.15-maint>
+
+	* NEWS, lib/project.py:
+	There is no need to be explicit about the name of the sip module.
+	[d5644b3af8ce] <5.15-maint>
+
+2022-02-27  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, lib/project.py:
+	Be explicit abou tthe sip module name and ABI version.
+	[d3ef6180143c] <5.15-maint>
+
+2022-02-26  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, qpy/QtQml/qpyqml_listdata.cpp:
+	Fixed a bug in the tidying up of QQmlListProperty.
+	[d55d3fcf6231] <5.15-maint>
+
+2022-02-01  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp:
+	Release the GIL when calling the QThreadPool dtor.
+	[4f9a01a72de9] <5.15-maint>
+
+2022-01-27  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, qpy/pylupdate/metatranslator.cpp:
+	Fixed the corruption of HTML in translated messages by pylupdate.
+	[705c61b3620c] <5.15-maint>
+
+2021-12-11  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qpy/QtNetwork/qpynetwork_qmap.sip:
+	Added support for the IpAddressEntry member of
+	QSsl.AlternativeNameEntryType.
+	[90f02fa83cc0] <5.15-maint>
+
+	* NEWS:
+	Fixed the NEWS file.
+	[7785974512b8] <5.15-maint>
+
+	* NEWS, qpy/QtNetwork/qpynetwork_qmap.sip:
+	Fixed the handling of the result of
+	QSslCertificate.subjectAlternativeNames().
+	[97d172d0fc09] <5.15-maint>
+
+2021-11-23  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp:
+	Various fixes to the QUrl.FormattingOptions enum. Removed a
+	redundant ctor from QFlags in .pyi files.
+	[61c0b5b29769] <5.15-maint>
+
+2021-11-18  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp:
+	Added the missing QBluetoothUuid ctors.
+	[d7fb0f074c82] <5.15-maint>
+
+2021-11-12  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp:
+	Backed out changeset 24d217336964 The annotations aren't
+	superfluous.
+	[5c0045266501] <5.15-maint>
+
+	* NEWS, PyQt5.msp:
+	Removed some superfluous /PyInt/ annotations.
+	[24d217336964] <5.15-maint>
+
+2021-10-29  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 5.15.6 for changeset 34cb760572b8
+	[aa9939ca4c8b] <5.15-maint>
+
 2021-10-24  Phil Thompson  <phil@riverbankcomputing.com>
 
 	* pyuic/uic/Compiler/qtproxies.py:

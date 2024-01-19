@@ -1,7 +1,7 @@
 // This contains definitions related to the support for Python objects and Qt's
 // meta-type system.
 //
-// Copyright (c) 2021 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2023 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 

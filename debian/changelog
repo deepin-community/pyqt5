@@ -1,8 +1,71 @@
-pyqt5 (5.15.6+dfsg-1+deepin1) UNRELEASED; urgency=medium
+pyqt5 (5.15.10+dfsg-1) unstable; urgency=medium
 
-  * update
+  * New upstream release.
+  * Drop reproducible_pyrcc5.patch, included in the new release.
+  * Bump python3-pyqt5.sip required version to 12.13.
 
- -- Debian Python Team <team+python@tracker.debian.org>  Thu, 08 Dec 2022 15:54:40 +0800
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 26 Oct 2023 13:17:13 +0300
+
+pyqt5 (5.15.9+dfsg-2) unstable; urgency=medium
+
+  * Add a patch to make pyrcc5 generate reproducible output
+    (closes: #1024114). Thanks Chris Lamb and Timo Röhling!
+  * Remove dbgsym migration code.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 08 Jul 2023 20:01:32 +0300
+
+pyqt5 (5.15.9+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop composite_qt_module.patch, included in the new release.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 07 Feb 2023 22:00:26 +0400
+
+pyqt5 (5.15.8+dfsg-2) unstable; urgency=medium
+
+  * Fix PyQt5.Qt module being empty (closes: #1030188).
+    - Bump sip build-dependencies to 6.7.6+dfsg-2.
+    - Backport upstream patch to fix the order in which modules are built.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 02 Feb 2023 13:57:27 +0400
+
+pyqt5 (5.15.8+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump sip build-dependencies to 6.6.2, pyqt-builder to 1.14.1.
+  * Update years in debian/copyright.
+  * Generate .pyi on mipsel again. The latest sip should use less memory.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 29 Jan 2023 21:17:25 +0400
+
+pyqt5 (5.15.7+dfsg-3) unstable; urgency=medium
+
+  * Disable generation of .pyi files on mipsel to reduce memory consumption
+    (closes: #1026980).
+  * Update Lintian overrides for the pointed hints.
+  * Bump Standards-Version to 4.6.2, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 27 Dec 2022 16:51:02 +0300
+
+pyqt5 (5.15.7+dfsg-2) unstable; urgency=medium
+
+  * Team Upload
+  * Modified pylupdate: set the default encoding to C when
+    locale.getdefaultlocale() returns (None, None); this allows
+    pylupdate5 to work correctly in a cowbuilder session.
+    Closes: #1021132
+
+ -- Georges Khaznadar <georgesk@debian.org>  Sun, 02 Oct 2022 19:32:12 +0200
+
+pyqt5 (5.15.7+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump python3-pyqt5.sip required version to 12.11.
+  * Update years in debian/copyright.
+  * Require Qt 5.15, pyqt-builder dropped support for older versions.
+  * Bump Standards-Version to 4.6.1, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 22 Jun 2022 13:40:38 +0300
 
 pyqt5 (5.15.6+dfsg-1) unstable; urgency=medium
 

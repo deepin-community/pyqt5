@@ -254,10 +254,12 @@ static QString protect_qs(const QString &qs)
 {
     QString protected_qs(qs);
 
-    protected_qs.replace(QLatin1String("\""), QLatin1String("&quot;"))
+    // The & replacement must be first.
+    protected_qs
+        .replace(QLatin1String("&"), QLatin1String("&amp;"))
+        .replace(QLatin1String("\""), QLatin1String("&quot;"))
         .replace(QLatin1String("<"), QLatin1String("&lt;"))
-        .replace(QLatin1String(">"), QLatin1String("&gt;"))
-        .replace(QLatin1String("&"), QLatin1String("&amp;"));
+        .replace(QLatin1String(">"), QLatin1String("&gt;"));
 
     return protected_qs;
 }

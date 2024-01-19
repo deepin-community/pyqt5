@@ -1,0 +1,19 @@
+Default encoding set to "C", when locale.getdefaultlocale()
+returns (None, None)
+Index: pyqt5/pylupdate/pylupdate_main.py
+===================================================================
+--- pyqt5.orig/pylupdate/pylupdate_main.py
++++ pyqt5/pylupdate/pylupdate_main.py
+@@ -70,7 +70,11 @@ def updateTsFiles(fetchedTor, tsFileName
+ 
+ 
+ def _encoded_path(path):
+-    return path.encode(locale.getdefaultlocale()[1])
++    encoding = locale.getdefaultlocale()[1]
++    if encoding is None:
++        # fall back to the C encoding
++        encoding = "C"
++    return path.encode(encoding)
+ 
+ 
+ def main():

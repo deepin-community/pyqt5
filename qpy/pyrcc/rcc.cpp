@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (c) 2018 Riverbank Computing Limited. All rights reserved.
+** Copyright (c) 2023 Riverbank Computing Limited. All rights reserved.
 ** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
@@ -442,6 +442,11 @@ RCCResourceLibrary::writeHeader(FILE *out)
     return true;
 }
 
+static bool qt_rcc_compare_hash(const RCCFileInfo *left, const RCCFileInfo *right)
+{
+    return qt_hash(left->name) < qt_hash(right->name);
+}
+
 bool
 RCCResourceLibrary::writeDataBlobs(FILE *out)
 {
@@ -455,9 +460,13 @@ RCCResourceLibrary::writeDataBlobs(FILE *out)
     qint64 offset = 0;
     while(!pending.isEmpty()) {
         RCCFileInfo *file = pending.pop();
-        for(QHash<QString, RCCFileInfo*>::iterator it = file->children.begin();
-            it != file->children.end(); ++it) {
-            RCCFileInfo *child = it.value();
+
+        // Sort deterministically for reproducible builds.
+        QList<RCCFileInfo*> children = file->children.values();
+        qSort(children.begin(), children.end(), qt_rcc_compare_hash);
+
+        for(int i = 0; i < children.size(); ++i) {
+            RCCFileInfo *child = children.at(i);
             if(child->flags & RCCFileInfo::Directory)
                 pending.push(child);
             else
@@ -483,9 +492,13 @@ RCCResourceLibrary::writeDataNames(FILE *out)
     qint64 offset = 0;
     while(!pending.isEmpty()) {
         RCCFileInfo *file = pending.pop();
-        for(QHash<QString, RCCFileInfo*>::iterator it = file->children.begin();
-            it != file->children.end(); ++it) {
-            RCCFileInfo *child = it.value();
+
+        // Sort deterministically for reproducible builds.
+        QList<RCCFileInfo*> children = file->children.values();
+        qSort(children.begin(), children.end(), qt_rcc_compare_hash);
+
+        for(int i = 0; i < children.size(); ++i) {
+            RCCFileInfo *child = children.at(i);
             if(child->flags & RCCFileInfo::Directory)
                 pending.push(child);
             if(names.contains(child->name)) {
@@ -498,11 +511,6 @@ RCCResourceLibrary::writeDataNames(FILE *out)
     }
     fprintf(out, "\"\n\n");
     return true;
-}
-
-static bool qt_rcc_compare_hash(const RCCFileInfo *left, const RCCFileInfo *right)
-{
-    return qt_hash(left->name) < qt_hash(right->name);
 }
 
 bool RCCResourceLibrary::writeDataStructure(FILE *out, int version)

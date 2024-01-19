@@ -1,6 +1,6 @@
 # This is the PyQt5 build script.
 #
-# Copyright (c) 2021 Riverbank Computing Limited <info@riverbankcomputing.com>
+# Copyright (c) 2023 Riverbank Computing Limited <info@riverbankcomputing.com>
 # 
 # This file is part of PyQt5.
 # 
@@ -27,30 +27,35 @@ from sipbuild import (Buildable, BuildableModule, Installable, Option,
         UserException)
 
 
+# The minimum sip module ABI version needed.
+ABI_VERSION = '12.13'
+
+
 class PyQt(PyQtProject):
     """ The PyQt5 project. """
 
     def __init__(self):
         """ Initialise the project. """
 
-        super().__init__(dunder_init=True, tag_prefix='Qt',
-                console_scripts=[
+        # We specify the name of the sip module because PyQt-builder doesn't
+        # provide it if we are creating an sdist.
+        super().__init__(abi_version=ABI_VERSION, sip_module='PyQt5.sip',
+                dunder_init=True, tag_prefix='Qt', console_scripts=[
                     'pylupdate5 = PyQt5.pylupdate_main:main',
                     'pyrcc5 = PyQt5.pyrcc_main:main',
                     'pyuic5 = PyQt5.uic.pyuic:main'])
 
         # Each set of bindings must appear after any set they depend on.
-        self.bindings_factories = [Qt, QtCore, QtNetwork, QtGui, QtWidgets,
-            QtQml, QAxContainer, QtAndroidExtras, QtBluetooth, QtDBus,
-            QtDesigner, Enginio, QtHelp, QtMacExtras, QtMultimedia,
-            QtMultimediaWidgets, QtNfc, QtOpenGL, QtPositioning, QtLocation,
-            QtPrintSupport, QtQuick, QtQuick3D, QtQuickWidgets,
-            QtRemoteObjects, QtSensors, QtSerialPort, QtSql, QtSvg, QtTest,
-            QtTextToSpeech, QtWebChannel, QtWebKit, QtWebKitWidgets,
-            QtWebSockets, QtWinExtras, QtX11Extras, QtXml, QtXmlPatterns,
-            _QOpenGLFunctions_2_0, _QOpenGLFunctions_2_1,
-            _QOpenGLFunctions_4_1_Core, _QOpenGLFunctions_ES2, pylupdate,
-            pyrcc]
+        self.bindings_factories = [QtCore, QtNetwork, QtGui, QtWidgets, QtQml,
+            QAxContainer, QtAndroidExtras, QtBluetooth, QtDBus, QtDesigner,
+            Enginio, QtHelp, QtMacExtras, QtMultimedia, QtMultimediaWidgets,
+            QtNfc, QtOpenGL, QtPositioning, QtLocation, QtPrintSupport,
+            QtQuick, QtQuick3D, QtQuickWidgets, QtRemoteObjects, QtSensors,
+            QtSerialPort, QtSql, QtSvg, QtTest, QtTextToSpeech, QtWebChannel,
+            QtWebKit, QtWebKitWidgets, QtWebSockets, QtWinExtras, QtX11Extras,
+            QtXml, QtXmlPatterns, Qt, _QOpenGLFunctions_2_0,
+            _QOpenGLFunctions_2_1, _QOpenGLFunctions_4_1_Core,
+            _QOpenGLFunctions_ES2, pylupdate, pyrcc]
 
     def apply_user_defaults(self, tool):
         """ Set default values where needed. """
@@ -189,7 +194,7 @@ del find_qt
 
         # Add the composite module.
         if 'Qt' in self.bindings:
-            self._add_composite_module(tool)
+            self._add_composite_module()
 
         # Always install the uic module.
         installable = Installable('uic', target_subdir='PyQt5')
@@ -220,7 +225,7 @@ del find_qt
         if self.dbus_python:
             self._add_dbus(others_debug)
 
-    def _add_composite_module(self, tool):
+    def _add_composite_module(self):
         """ Add the bindings for the composite module. """
 
         sip_file = os.path.join(self.build_dir, 'Qt.sip')
@@ -583,7 +588,8 @@ class QtCore(PyQtBindings):
     def __init__(self, project):
         """ Initialise the bindings. """
 
-        super().__init__(project, 'QtCore', qmake_QT=['-gui'])
+        super().__init__(project, 'QtCore', qmake_QT=['-gui'],
+                define_macros=['QT_KEYPAD_NAVIGATION'])
 
     def generate(self):
         """ Generate the bindings source code and return the corresponding
