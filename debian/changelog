@@ -1,3 +1,9 @@
+pyqt5 (5.15.10+dfsg-1deepin1) unstable; urgency=medium
+
+  * No source change upload against python 3.12.
+
+ -- Tianyu Chen <sweetyfish@deepin.org>  Fri, 05 Jul 2024 12:03:04 +0200
+
 pyqt5 (5.15.10+dfsg-1) unstable; urgency=medium
 
   * New upstream release.
